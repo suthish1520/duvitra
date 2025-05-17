@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Company Webpage</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Bootstrap & Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <style>
+        
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: #00f7ff;
+            margin-bottom: 20px;
+        }
+
+        .hero-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #ccc;
+        }
+
+        .hero-features {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 20px;
+        }
+
+        .hero-features li {
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .hero-buttons .btn {
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 30px;
+        }
+
+        .hero-img {
+            max-width: 100%;
+            height: auto;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .brand-highlight {
+            color: #00f7ff;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                text-align: center;
+            }
+
+            .hero-img {
+                margin-top: 30px;
+            }
+
+            .text-start {
+                text-align: center !important;
+            }
+        }
+
+        .overlay-wrapper {
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        .about-box {
+            border-radius: 20px;
+            padding: 30px;
+            background-color: rgba(0, 0, 0, 0.238);
+            margin-bottom: 2rem;
+            box-shadow: 0 0 15px rgba(0, 247, 255, 0.1);
+        }
+
+        .about-box h1 {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .carousel-tab-btn {
+            background-color: transparent;
+            border: 2px solid #4e5aff;
+            color: #4e5aff;
+            padding: 10px 18px;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-tab-btn:hover {
+            background-color: #4e5aff;
+            color: #000;
+            box-shadow: 0 0 12px rgba(81, 113, 255, 0.6);
+        }
+
+        .carousel-tab-btn.active {
+            background-color: #4e5aff;
+            color: #000;
+            font-weight: 600;
+            box-shadow: 0 0 15px rgba(95, 123, 250, 0.6);
+        }
+
+        .service-container h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #00f7ff;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: #aaa;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 20px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(0, 247, 255, 0.1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 0 15px rgba(0, 247, 255, 0.2);
+        }
+
+        .service-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: #00f7ff;
+        }
+
+        .service-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .service-desc {
+            font-size: 0.95rem;
+            color: #ccc;
+        }
+
+        /* Responsive */
+
+        @media (max-width: 992px) {
+            .service-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Indicators */
+
+        .indicator-wrapper {
+            position: fixed;
+            top: 50%;
+            right: 16px;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            z-index: 1000;
+            gap: 8px;
+            padding: 8px;
+        }
+
+        .indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: transparent;
+            border: 1px solid #fff;
+            position: relative;
+            transition: all 0.3s ease;
+            opacity: 0.6;
+        }
+
+        .indicator::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(0);
+            transition: transform 0.3s ease;
+            z-index: -1;
+        }
+
+        .indicator:hover {
+            background-color: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+            opacity: 1;
+        }
+
+        .indicator:hover::after {
+            transform: scale(1.8);
+        }
+
+        .indicator.active {
+            background-color: #fff;
+            box-shadow: 0 0 8px #fff;
+            opacity: 1;
+        }
+
+        @media (max-width: 576px) {
+            .indicator-wrapper {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* product */
+
+        .product-section {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            position: relative;
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .product-overlay {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            transition: background 0.3s ease;
+        }
+
+        .product-card:hover .product-overlay {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .product-overlay h4 {
+            margin: 0;
+            font-size: 1.4rem;
+        }
+
+        .product-overlay p {
+            margin: 5px 0 0;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 767px) {
+            .product-card {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#" class="brand-logo" target="_blank">
+        <img id="navbarLogo" src="images/Duvitra LOGO png (2).png" alt="logo">
+    </a>
+
+    <input type="checkbox" class="menu-icon" id="menu-icon" />
+    <label for="menu-icon"></label>
+
+    <nav class="nav">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Scroll Indicators -->
+    <div class="indicator-wrapper">
+        <a href="#main" class="indicator" id="ind-main"></a>
+        <a href="#about" class="indicator" id="ind-about"></a>
+        <a href="#services" class="indicator" id="ind-services"></a>
+        <a href="#products" class="indicator" id="ind-products"></a>
+        <a href="#footer" class="indicator" id="ind-footer"></a>
+
+    </div>
+
+    <!-- Main Section -->
+    <section id="main" class="hero-section d-flex align-items-center">
+        <div class="container">
+            <div class="row align-items-center row-main">
+                <!-- Left Side Content -->
+                <div class="col-md-6 text-start">
+                    <h1 class="hero-title">EMPOWRING SMART TRCHNOLOGIES</h1>
+                    <h3 class="hero-subtitle">Empowering Digital Innovation</h3>               
+                    <div class="hero-buttons mt-4">
+                        <button onclick="location.href='#about'" class="btn btn-primary me-2">Learn More</button>
+                        <button onclick="location.href='#footer'" class="btn btn-outline-light">Contact Us</button>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+    </section>
+
+
+    <!-- About Section -->
+    <section id="about" class="overlay-wrapper py-5" style="background-color:rgba(255, 255, 255, 0.05);">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Left Text Content -->
+                <div class="col-md-6 about-box text-white">
+                    <h1>About <span style="color:#00f7ff;">Duvitra</span></h1>
+                    <p>At Duvitra, we engineer tomorrow's digital landscape by fusing creativity, technology, and
+                        strategic thinking. With a customer-first approach, we deliver scalable solutions that help
+                        businesses thrive in a rapidly evolving tech environment.</p>
+                    <ul class="list-unstyled mt-3">
+                        <li>✔️ Custom Software Development</li>
+                        <li>✔️ Seamless Cloud Integration</li>
+                        <li>✔️ 24/7 Support & Maintenance</li>
+                        <li>✔️ AI-Powered Analytics & Insights</li>
+                        <li>✔️ End-to-End Digital Transformation</li>
+                    </ul>
+                </div>
+
+                <!-- Right Carousel -->
+                <div class="col-md-6">
+                    <div id="carouselMain" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner text-white rounded-4 p-4" style="background-color: #1a1a1a;">
+                            <div class="carousel-item active">
+                                <div class="carousel-custom-content">
+                                    <h2 class="text-info">Our Mission</h2>
+                                    <p>To empower businesses with innovative, secure, and efficient digital ecosystems
+                                        tailored to their vision.</p>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="carousel-custom-content">
+                                    <h2 class="text-info">Our Vision</h2>
+                                    <p>We blend design and technology to build intuitive and user-friendly solutions
+                                        that scale with your needs.</p>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="carousel-custom-content">
+                                    <h2 class="text-info">Our Moto</h2>
+                                    <p>From custom development to digital consulting and transformation, our services
+                                        are crafted to deliver value.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab Controls -->
+                    <div class="carousel-tab-controls mt-3 d-flex flex-wrap gap-2">
+                        <button type="button" data-bs-target="#carouselMain" data-bs-slide-to="0"
+                            class="carousel-tab-btn active">Our Mission</button>
+                        <button type="button" data-bs-target="#carouselMain" data-bs-slide-to="1"
+                            class="carousel-tab-btn">Our Vision</button>
+                        <button type="button" data-bs-target="#carouselMain" data-bs-slide-to="2"
+                            class="carousel-tab-btn">Our Moto</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Services Section -->
+    <section id="services" class="service-container py-5 text-white" style="background-color: #0000009c;">
+        <div class="container">
+            <h1 class="text-center mb-3">Our Services</h1>
+            <p class="subtitle text-center mb-5">Explore the wide range of services we offer to empower your business
+                with cutting-edge digital solutions.</p>
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="service-icon">💻</div>
+                    <div class="service-title">Web Development</div>
+                    <div class="service-desc">Responsive, fast-loading, and scalable websites tailored to your brand
+                        identity.</div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔍</div>
+                    <div class="service-title">SEO Optimization</div>
+                    <div class="service-desc">Improve visibility and boost your rankings with targeted SEO strategies.
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <div class="service-title">CRM Solutions</div>
+                    <div class="service-desc">Enhance customer relationships through intelligent, data-driven CRM tools.
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💸</div>
+                    <div class="service-title">Billing Software</div>
+                    <div class="service-desc">Simplify invoicing and automate payment tracking seamlessly.</div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎨</div>
+                    <div class="service-title">UI/UX Design</div>
+                    <div class="service-desc">Design clean, modern interfaces for intuitive digital experiences.</div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📢</div>
+                    <div class="service-title">Digital Marketing</div>
+                    <div class="service-desc">Run high-impact campaigns across platforms to engage your audience.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Products Section -->
+    <section id="products" class="product-section py-5">
+        <div class="container">
+            <h1 class="text-center mb-3">Products</h1>
+            <p class="subtitle text-center mb-5">Check out our featured products...</p>
+            <div class="product-grid">
+                <!-- Product Card 1 -->
+                <div class="product-card"
+                    style="background-image: url('https://images.unsplash.com/photo-1603791440384-56cd371ee9a7');">
+                    <div class="product-overlay">
+                        <h4>Warehouse Manager</h4>
+                        <p>Powerful inventory and logistics control system.</p>
+                    </div>
+                </div>
+                <!-- Product Card 2 -->
+                <div class="product-card"
+                    style="background-image: url('https://images.unsplash.com/photo-1607746882042-944635dfe10e');">
+                    <div class="product-overlay">
+                        <h4>CRM Platform</h4>
+                        <p>Manage customers and sales with ease.</p>
+                    </div>
+                </div>
+                <!-- Product Card 3 -->
+                <div class="product-card"
+                    style="background-image: url('https://images.unsplash.com/photo-1605902711622-cfb43c4437b5');">
+                    <div class="product-overlay">
+                        <h4>Analytics Dashboard</h4>
+                        <p>Get real-time insights and business reports.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="footer" class="bg-dark text-white pt-5 ">
+        <div class="container-fluid px-5 ">
+            <div class="row contact-section gx-5 ">
+                <!-- Left Section: Footer Info -->
+                <div class="col-lg-8 ">
+                    <div class="row ">
+                        <!-- Logo & Intro -->
+                        <div class="col-md-4 mb-4 ">
+                            <img src="images/Duvitra LOGO png (2).png" alt="Logo " style="height: 50px; " />
+                            <p class="mt-3 ">At <strong>Duvitra Solutions</strong>, we are not just an IT company — we
+                                are your technology partner in progress.</p>
+                        </div>
+
+                        <!-- Discover & Quick Links -->
+                        <div class="col-md-4 mb-4 ">
+                            <h5 class="fw-bold ">Discover</h5>
+                            <ul class="list-unstyled ">
+                                <li><a href="# " class="text-white-50 text-decoration-none ">Privacy Policy</a></li>
+                                <li><a href="# " class="text-white-50 text-decoration-none ">Terms and Conditions</a>
+                                </li>
+                            </ul>
+                            <h5 class="fw-bold mt-4 ">Quick Links</h5>
+                            <ul class="list-unstyled ">
+                                <li><a href="#main " class="text-white-50 text-decoration-none ">Home</a></li>
+                                <li><a href="# " class="text-white-50 text-decoration-none ">Odoo</a></li>
+                                <li><a href="#about " class="text-white-50 text-decoration-none ">About</a></li>
+                                <li><a href="#services " class="text-white-50 text-decoration-none ">Service</a></li>
+                                <li><a href="#contact " class="text-white-50 text-decoration-none ">Contact</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Social & Map -->
+                        <div class="col-md-4 mb-4 ">
+                            <h5 class="fw-bold ">Let's Connect</h5>
+                            <div class="d-flex gap-2 mt-2 mb-3 ">
+                                <a href="# " class="btn btn-dark rounded-circle "><i class="fab fa-instagram "></i></a>
+                                <a href="# " class="btn btn-dark rounded-circle "><i class="fab fa-facebook-f "></i></a>
+                                <a href="# " class="btn btn-dark rounded-circle "><i
+                                        class="fab fa-linkedin-in "></i></a>
+                            </div>
+                            <iframe src="https://www.google.com/maps?q=Thiruvananthapuram&output=embed " width="100% "
+                                height="180 " allowfullscreen=" " loading="lazy "
+                                referrerpolicy="no-referrer-when-downgrade "></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Section: Contact Form -->
+                <div class="col-lg-4 ">
+                    <h4 class="mb-4 ">Write Message</h4>
+                    <form>
+                        <input type="text " placeholder="Name " required
+                            class="form-control mb-3 bg-transparent text-white border-white " />
+                        <input type="email " placeholder="Email " required
+                            class="form-control mb-3 bg-transparent text-white border-white " />
+                        <textarea placeholder="Message ... " required
+                            class="form-control mb-3 bg-transparent text-white border-white " rows="5 "></textarea>
+                        <button type="submit " class="btn btn-outline-light w-100 ">Send Now</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="text-center py-3 border-top border-light mt-4 ">
+                <small>&copy; 2025 Duvitra Solutions</small>
+            </div>
+        </div>
+    </section>
+    <!-- JS Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const indicators = document.querySelectorAll('.indicator');
+        const sections = ['main', 'about', 'services', 'products', 'footer'];
+
+        window.addEventListener('scroll', () => {
+            const scrollPos = window.scrollY + window.innerHeight / 2;
+            sections.forEach(id => {
+                const sec = document.getElementById(id);
+                const ind = document.getElementById('ind-' + id);
+                if (
+                    scrollPos >= sec.offsetTop &&
+                    scrollPos < sec.offsetTop + sec.offsetHeight
+                ) {
+                    indicators.forEach(i => i.classList.remove('active'));
+                    ind.classList.add('active');
+                }
+            });
+        });
+
+        // Initial highlight
+        window.dispatchEvent(new Event('scroll'));
+    </script>
+    <script>
+        const buttons = document.querySelectorAll('.carousel-tab-btn');
+        const carousel = document.getElementById('carouselMain');
+
+        carousel.addEventListener('slide.bs.carousel', function (e) {
+            buttons.forEach(btn => btn.classList.remove('active'));
+            buttons[e.to].classList.add('active');
+        });
+    </script>
+    <script>
+        const navbarLogo = document.getElementById("navbarLogo");
+
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 10) {
+                navbarLogo.classList.add("hidden");
+            } else {
+                navbarLogo.classList.remove("hidden");
+            }
+        });
+    </script>
+</body>
+
+</html>
