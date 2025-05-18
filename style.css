@@ -2,15 +2,45 @@ html {
     scroll-behavior: smooth;
 }
 
-body {
+/* body {
     margin: 0;
     padding: 0;
-    background: url('https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbGh5eWMwajl6OGxrd3FkYmExeTJreWxmbGwwOW0yeWZyb3hhZzM5ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3ov9jQWd5qhiUSPDri/giphy.gif') no-repeat center center fixed;
     background-size: cover;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: white;
+    background: #E55D87; 
+background: -webkit-linear-gradient(to right, #5FC3E4, #E55D87);  
+background: linear-gradient(to right, #5FC3E4, #E55D87); 
+
+} */
+ body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+/* background: #f3c8fa;
+background: linear-gradient(90deg, rgba(243, 200, 250, 1) 0%, rgba(255, 255, 255, 1) 50%, rgba(177, 229, 250, 1) 100%);} */}
+#bgVideo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+  object-fit: contain; 
+  object-fit: cover;
 }
 
+/* Overlay (shade) */
+/* .videoOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5); 
+  z-index: -1;
+} */
 [type="checkbox"]:checked,
 [type="checkbox"]:not(:checked) {
     position: absolute;
@@ -212,7 +242,7 @@ body {
 
 
 .row-main .col-md-6 {
-    width: 100%;
+    width: 50%;
 }
 
 .hero-section {
@@ -229,7 +259,9 @@ body {
 /* Responsive Tweaks */
 
 @media screen and (max-width: 991px) {
-
+.brand-logo img {
+    height: 30px;
+}
     .menu-icon:checked+label,
     .menu-icon:not(:checked)+label {
         right: 52px;
@@ -267,7 +299,7 @@ body {
     }
 }
 
-.contact-section {
+/* .contact-section {
     padding: 60px 20px;
     background-color: rgba(0, 0, 0, 0.9);
     border-radius: 12px;
@@ -300,4 +332,37 @@ iframe {
     .contact-section {
         flex-direction: column;
     }
+} */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
 }
+.bounce-icon {
+  animation: bounce 2s infinite;
+}
+.contact-setion{
+    height: 100vh;
+}
+.counter-box {
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.counter-box:hover {
+  transform: scale(1.05);
+}
+
+.counter-box h2 {
+  font-size: 3rem;
+  color: #00f7ff;
+  margin: 0;
+}
+
+.counter-box p {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  color: #ccc;
+}
+
